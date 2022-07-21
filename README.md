@@ -1,1 +1,2 @@
-# Solutions for leetcode problems
+- Solutions for leetcode problems
+- Can be found in leetcode as well
