@@ -21,6 +21,7 @@ def get_parentheses(n):
 # Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
 # Input: n = 3
 # Output: ["((()))","(()())","(())()","()(())","()()()"]
+# https://leetcode.com/problems/generate-parentheses/
 def main():
     n = 3
     print("n:" , n)

@@ -26,6 +26,7 @@ def numDecodings(s: str) -> int:
         
     
 
+# https://leetcode.com/problems/decode-ways/
 if __name__ == "__main__":
     print(numDecodings("11106"))
 
