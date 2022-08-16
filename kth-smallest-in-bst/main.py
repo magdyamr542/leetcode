@@ -8,10 +8,10 @@ class TreeNode:
 
 def kthSmallest(root: Optional[TreeNode], k: int) -> int:
     values = []
-    # do a preorder traversal and return the nth node
-    def preorder(node):
+    # do a inorder traversal and return the nth node
+    def inorder(node):
         if node.left:
-            if preorder(node.left):
+            if inorder(node.left):
                 return True
            
         values.append(node.val)
@@ -19,11 +19,11 @@ def kthSmallest(root: Optional[TreeNode], k: int) -> int:
             return True 
             
         if node.right:
-            if preorder(node.right):
+            if inorder(node.right):
                 return True
             
             
-    preorder(root)
+    inorder(root)
     return values[k-1]
     
             
