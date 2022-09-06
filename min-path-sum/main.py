@@ -23,13 +23,40 @@ def minPathSum( grid: List[List[int]]) -> int:
         
         
         
-        
+
+def genAllPaths( grid: List[List[int]]) -> List[int]:
+    for i in grid:
+        print('\t'.join(map(str, i)))
+
+    result = []
+    def dfs(row : int , col : int , curr_path : List[int]):
+        # base cases
+        # 1. out of bounds
+        if row >= len(grid) or col >= len(grid):
+            return
+
+
+        curr_path.append(grid[row][col])
+
+        # 2. reached destination
+        if row == len(grid) - 1 and col == len(grid[0]) - 1:
+            result.append(curr_path)
+            return
+
+        # go down
+        dfs(row + 1 , col , curr_path.copy())
+        # go right
+        dfs(row , col + 1 , curr_path.copy())
+
+    dfs(0 , 0 , [])
+    return result
 
 
 # https://leetcode.com/problems/minimum-path-sum/
 def main():
     grid = [[1,3,1],[1,5,1],[4,2,1]]
     print(minPathSum(grid))
+    print(genAllPaths(grid))
 
 if __name__ == "__main__":
     main()
