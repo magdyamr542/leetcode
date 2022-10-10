@@ -7,14 +7,14 @@ def longestIncreasingPath(matrix: List[List[int]]) -> int:
     result = 0
     cache = {}
     def dfs(row,col,visited , res):
+        # we know the longest path for the current cell
         if (row,  col) in cache:
-            print(f"row={row},col={col}, res={res} , visited={visited}")
-            print(cache)
-            print("return " , cache.get((row,col)) + res - 1)
-            print()
+            # if we are coming from another cell. let's say from the cell left to us
+            # then we added a 1 in the call to dfs
+            # but this cell is cached and we already know the value for it so we subtract the previously added one
+            # with the intuition that the longest path from the current cell we came from is the longest path it took the cell we came from to come here plus the longest path from here which is cached
             return cache.get((row,col)) + res - 1
 
-        # out of bounds
         if (row,col) in visited:
             return res 
         
