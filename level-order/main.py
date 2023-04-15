@@ -8,25 +8,29 @@ class TreeNode:
 
 def levelOrder(root: Optional[TreeNode]) -> List[List[int]]:
     if not root:
-        return []
+            return []
+    # all nodes in the same curr_level belong together in the output inside of an array
     
-    queue = [root]
+    queue = [[root , 0]] # a tuple [node, curr_level]
+    curr_level = -1 # current level being processed now
+    
     result = []
-    while len(queue) > 0:
-        curr_level = []
-        curr_queue = queue
-        queue = []
-        for node in curr_queue:
-            curr_level.append(node.val)
-        result.append(curr_level)
+    while queue:
+        curr_node , curr_node_level = queue.pop(0)
+        
+        if curr_node_level == curr_level:
+            # we already created an array for this level. just append the current node's value to it
+            result[-1].append(curr_node.val)
+        else:
+            # we are processing a new level
+            curr_level = curr_node_level
+            result.append([curr_node.val])
             
-        for node in curr_queue:
-            if node.left:
-                queue.append(node.left)
-            if node.right:
-                queue.append(node.right)
-                
-            
+        if curr_node.left:
+            queue.append([curr_node.left, curr_level + 1])
+        if curr_node.right:
+            queue.append([curr_node.right, curr_level + 1])
+
     return result
                 
                 
